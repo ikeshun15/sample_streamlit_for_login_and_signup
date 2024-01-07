@@ -7,5 +7,5 @@ class LoggedinSState(BaseSState[bool]):
         return "loggedin"
     
     @staticmethod
-    def get_default() -> str:
+    def get_default() -> bool:
         return False

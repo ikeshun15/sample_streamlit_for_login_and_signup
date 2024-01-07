@@ -7,5 +7,5 @@ class WakeupLottieSState(BaseSState[bool]):
         return "wakeup_lottie"
     
     @staticmethod
-    def get_default() -> str:
+    def get_default() -> bool:
         return False
