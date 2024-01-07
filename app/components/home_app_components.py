@@ -59,11 +59,11 @@ class HomeAppComponents:
 
     @classmethod
     def login_page(cls) -> None:
-        st.header(body="🔑 ログイン", divider='rainbow')
+        st.header(body="🔒 ログイン", divider='rainbow')
         login_form = st.form(key="login_form")
         with login_form:
-            username = st.text_input(label="ユーザ名", placeholder="ユーザ名を入力")
-            password = st.text_input(label="パスワード", type="password", placeholder="パスワードを入力")
+            username = st.text_input(label="👤 ユーザ名", placeholder="ユーザ名を入力...")
+            password = st.text_input(label="🔑 パスワード", type="password", placeholder="パスワードを入力...")
             submit_button = st.form_submit_button(label="Submit", type="primary")
 
         if submit_button:
