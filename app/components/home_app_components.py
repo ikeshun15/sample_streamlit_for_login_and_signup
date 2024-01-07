@@ -42,7 +42,7 @@ class HomeAppComponents:
 
         st.markdown(
             """
-            ### 食べたいいちご
+            ### いま食べたいいちご🍓
             - 越後姫
             - とちおとめ
             - あまおう
