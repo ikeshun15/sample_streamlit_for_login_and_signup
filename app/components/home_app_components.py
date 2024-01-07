@@ -2,7 +2,8 @@ import streamlit as st
 from streamlit_lottie import st_lottie
 from time import sleep
 
-from controller import LoginManager, LottieManager
+from controller import LoginManager
+from model import LottieManager
 from ..s_state import LoggedinUserInfoSState, WakeupLottieSState, FinishedLoginLottieSState, LoggedinSState
 
 class HomeAppComponents:
@@ -23,7 +24,7 @@ class HomeAppComponents:
     @staticmethod
     def wakeup_lottie() -> None:
         if not WakeupLottieSState.get():
-            st_lottie(animation_source=LottieManager.WAKEUP_LOGO, key="WAKEUP_LOTTIE", speed=0.6, reverse=False, loop=False)
+            st_lottie(animation_source=LottieManager.WAKEUP_LOTTIE, key="WAKEUP_LOTTIE", speed=0.6, reverse=False, loop=False)
             sleep(1.3)
             WakeupLottieSState.set(value=True)
             st.rerun()
@@ -31,7 +32,7 @@ class HomeAppComponents:
     @staticmethod
     def login_success_lottie() -> None:
         if not FinishedLoginLottieSState.get():
-            st_lottie(animation_source=LottieManager.LOGIN_SUCCESS_LOGO, key="LOGIN_SUCCESS_LOTTIE", speed=1.7, reverse=False, loop=False)
+            st_lottie(animation_source=LottieManager.LOGIN_SUCCESS_LOTTIE, key="LOGIN_SUCCESS_LOTTIE", speed=1.7, reverse=False, loop=False)
             sleep(1.3)
             FinishedLoginLottieSState.set(value=True)
             st.rerun()

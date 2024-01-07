@@ -1,1 +1,1 @@
-from .manager import LoginManager, LottieManager
+from .manager import LoginManager
