@@ -3,7 +3,7 @@ from streamlit_lottie import st_lottie
 from time import sleep
 
 from controller import LoginManager, LottieManager
-from ..s_state import LoggedinUserInfoSState, FinishedLoginLottieSState, LoggedinSState
+from ..s_state import LoggedinUserInfoSState, WakeupLottieSState, FinishedLoginLottieSState, LoggedinSState
 
 class HomeAppComponents:
     @staticmethod
@@ -16,9 +16,18 @@ class HomeAppComponents:
     @staticmethod
     def init_session_state() -> None:
         LoggedinSState.init()
+        WakeupLottieSState.init()
         FinishedLoginLottieSState.init()
         LoggedinUserInfoSState.init()
 
+    @staticmethod
+    def wakeup_lottie() -> None:
+        if not WakeupLottieSState.get():
+            st_lottie(animation_source=LottieManager.WAKEUP_LOGO, key="WAKEUP_LOTTIE", speed=0.6, reverse=False, loop=False)
+            sleep(1.3)
+            WakeupLottieSState.set(value=True)
+            st.rerun()
+    
     @staticmethod
     def login_success_lottie() -> None:
         if not FinishedLoginLottieSState.get():
@@ -83,6 +92,7 @@ class HomeAppComponents:
     def set_page(cls) -> None:
         cls.init_page()
         cls.init_session_state()
+        cls.wakeup_lottie()
         
         if LoggedinSState.get():
             cls.main_page()
