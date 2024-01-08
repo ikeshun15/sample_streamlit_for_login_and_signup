@@ -54,18 +54,31 @@ class HomeAppComponents:
 
         st.write(f"ユーザ名: :rainbow[**{st.session_state.loggedin_user_info.username}**]でログイン中")
     
-    # @staticmethod
-    # def signup_page() -> None:
-    #     pass
+    @staticmethod
+    def signup_page() -> None:
+        signup_form = st.form(key="signup_form")
+
+        with signup_form:
+            st.header(body="🙋 新規登録", divider='rainbow')
+            username = st.text_input(label="👤 ユーザ名", placeholder="登録するユーザ名を入力...")
+            password = st.text_input(label="🔑 パスワード", type="password", placeholder="任意のパスワードを入力...")
+            submit_button = st.form_submit_button(label="登録", type="primary")
+
+        if submit_button:
+            pass
+            
+            with signup_form:
+                pass
 
     @classmethod
     def login_page(cls) -> None:
-        st.header(body="🔒 ログイン", divider='rainbow')
         login_form = st.form(key="login_form")
+
         with login_form:
+            st.header(body="🔒 ログイン", divider='rainbow')
             username = st.text_input(label="👤 ユーザ名", placeholder="ユーザ名を入力...")
             password = st.text_input(label="🔑 パスワード", type="password", placeholder="パスワードを入力...")
-            submit_button = st.form_submit_button(label="Submit", type="primary")
+            submit_button = st.form_submit_button(label="ログイン", type="primary")
 
         if submit_button:
             is_success, message, user_info_instance = LoginManager.login(username=username, password=password)
@@ -81,13 +94,13 @@ class HomeAppComponents:
 
             # st.rerun()
 
-    # @classmethod
-    # def select_signup_or_login_page(cls):
-    #     signup_or_login =  st.radio(label="ログインまたは新規登録", options=["**ログイン**", "**新規登録**"], horizontal=True)
-    #     if signup_or_login == "**ログイン**":
-    #         cls.login_page()
-    #     else:
-    #         cls.signup_page()
+    @classmethod
+    def select_signup_or_login_page(cls):
+        signup_or_login =  st.radio(label="ログインまたは新規登録", options=["**ログイン**", "**新規登録**"], horizontal=True)
+        if signup_or_login == "**ログイン**":
+            cls.login_page()
+        else:
+            cls.signup_page()
 
     @classmethod
     def set_page(cls) -> None:
@@ -98,5 +111,5 @@ class HomeAppComponents:
         if LoggedinSState.get():
             cls.main_page()
         else:
-            # cls.select_signup_or_login_page()
-            cls.login_page()
+            cls.select_signup_or_login_page()
+            # cls.login_page()
