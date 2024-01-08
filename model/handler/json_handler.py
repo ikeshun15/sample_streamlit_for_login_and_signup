@@ -8,9 +8,10 @@ class JsonHandler:
         with open(json_file_path, 'r') as f:
             return json.load(f)
         
-    
     @staticmethod
-    def save_json(json_data: Dict, filename: str) -> None:
+    def save_json(data: Dict, new_data: Dict, json_file_path: str) -> None:
+        # 辞書型のデータ同士を結合する
+        data.update(new_data)
         # jsonファイルの書き出し
-        with open(filename, 'w') as f:
-            json.dump(json_data, f, indent=4)
+        with open(json_file_path, 'w') as f:
+            json.dump(data, f, indent=4)

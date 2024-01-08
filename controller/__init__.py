@@ -1,1 +1,1 @@
-from .manager import LoginManager
+from .manager import LoginManager, SignupManager

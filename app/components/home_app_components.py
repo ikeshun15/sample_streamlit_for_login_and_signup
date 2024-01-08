@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_lottie import st_lottie
 from time import sleep
 
-from controller import LoginManager
+from controller import LoginManager, SignupManager
 from model import LottieManager
 from ..s_state import LoggedinUserInfoSState, WakeupLottieSState, FinishedLoginLottieSState, LoggedinSState
 
@@ -62,13 +62,17 @@ class HomeAppComponents:
             st.header(body="🙋 新規登録", divider='rainbow')
             username = st.text_input(label="👤 ユーザ名", placeholder="登録するユーザ名を入力...")
             password = st.text_input(label="🔑 パスワード", type="password", placeholder="任意のパスワードを入力...")
+            retype_password = st.text_input(label="✅ パスワードの確認用(再入力)", type="password", placeholder="再度パスワードを入力...")
             submit_button = st.form_submit_button(label="登録", type="primary")
 
         if submit_button:
-            pass
+            is_success, message = SignupManager.signup(username=username, password=password, retype_password=retype_password)
             
             with signup_form:
-                pass
+                if is_success:
+                    st.success(icon="🙆", body=message)
+                else:
+                    st.warning(icon="🙅", body=message)
 
     @classmethod
     def login_page(cls) -> None:
