@@ -19,7 +19,6 @@ class HomeAppComponents:
         LoggedinSState.init()
         WakeupLottieSState.init()
         FinishedLoginLottieSState.init()
-        LoggedinUserInfoSState.init()
 
     @staticmethod
     def wakeup_lottie() -> None:
@@ -52,7 +51,7 @@ class HomeAppComponents:
             """
         )
 
-        st.write(f"ユーザ名: :rainbow[**{st.session_state.loggedin_user_info.username}**]でログイン中")
+        st.write(f"ユーザ名: :rainbow[**{LoggedinUserInfoSState.get().username}**]でログイン中")
     
     @staticmethod
     def signup_page() -> None:

@@ -6,7 +6,3 @@ class LoggedinUserInfoSState(BaseSState[UserInfoEntity]):
     @staticmethod
     def get_name() -> str:
         return "loggedin_user_info"
-    
-    @staticmethod
-    def get_default() -> str:
-        return ""
